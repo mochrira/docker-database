@@ -8,6 +8,8 @@ services:
       - mariadb_data:/var/lib/mysql
     env_file:
       - ./private/mariadb.env
+    ports:
+      - 3306:3306
     networks:
       - database
   
