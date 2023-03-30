@@ -1,0 +1,12 @@
+version: '3'
+name: database
+services: 
+  phpmyadmin:
+    container_name: db_pma
+    image: phpmyadmin:latest
+    networks:
+      - database
+
+networks:
+  database:
+    external: true
