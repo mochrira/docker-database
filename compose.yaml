@@ -18,8 +18,10 @@ services:
     image: phpmyadmin:apache
     depends_on:
       - mariadb
-    env_file:
-      - ./private/pma.env
+    environment:
+      - PMA_HOST=mariadb
+    ports:
+      - 1000:80
     links:
       - mariadb:db
     networks:
