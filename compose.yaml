@@ -12,6 +12,7 @@ services:
       - 3306:3306
     networks:
       - database
+    restart: always
   
   phpmyadmin:
     container_name: db_pma
@@ -20,12 +21,16 @@ services:
       - mariadb
     environment:
       - PMA_HOST=mariadb
+      - UPLOAD_LIMIT=100M
+      - PMA_ABSOLUTE_URL=http://localhost/phpmyadmin/
     ports:
       - 1000:80
     links:
       - mariadb:db
     networks:
       - database
+      - environment
+    restart: always
 
 volumes:
   mariadb_data:
@@ -35,3 +40,7 @@ networks:
   database:
     driver: bridge
     name: database
+  
+  environment:
+    name: environment
+    external: true
